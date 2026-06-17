@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clever Corner – More Than Just Tuition</title>
+  <meta name="description" content="A small-class Primary English tuition in Singapore where every child is truly seen, heard and understood. P1–P6. Book a complimentary trial." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:   #1B4BB5;
+      --blue2:  #2356CC;
+      --blt:    #EBF0FB;
+      --navy:   #0D1A2E;
+      --gold:   #C49A28;
+      --glt:    #FDF6E3;
+      --cream:  #FAF8F4;
+      --white:  #FFFFFF;
+      --text:   #1A2332;
+      --muted:  #5C6E7E;
+      --border: #E2E8F0;
+      --grad:   linear-gradient(135deg,#0D1A2E 0%,#1B4BB5 100%);
+      --grad2:  linear-gradient(135deg,#1B4BB5 0%,#2356CC 100%);
+      --sh:     0 8px 40px rgba(13,26,46,.11);
+      --r:      20px;
+      --hf: 'Playfair Display',Georgia,serif;
+      --bf: 'Plus Jakarta Sans',system-ui,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--bf);color:var(--text);background:var(--cream);overflow-x:hidden}
+    img{max-width:100%}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1120px;margin:0 auto;padding:0 24px}
+    .section{padding:88px 0}
+    .section--alt{background:var(--white)}
+    .section--dark{background:var(--navy)}
+
+    /* badges */
+    .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:16px;background:var(--glt);color:var(--gold);border:1px solid rgba(196,154,40,.3)}
+    .badge--blue{background:var(--blt);color:var(--blue);border-color:rgba(27,75,181,.2)}
+
+    /* type */
+    .section-title{font-family:var(--hf);font-size:clamp(27px,4vw,44px);line-height:1.18;margin-bottom:14px}
+    .section-sub{font-size:16px;color:var(--muted);line-height:1.8;max-width:580px}
+    .section-head{margin-bottom:52px}
+
+    /* buttons */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;font-family:var(--bf);font-size:15px;font-weight:600;cursor:pointer;border:none;transition:all .25s;text-decoration:none}
+    .btn-gold{background:var(--gold);color:var(--navy)}
+    .btn-gold:hover{background:#b38b22;transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,40,.4)}
+    .btn-outline{background:transparent;color:white;border:2px solid rgba(255,255,255,.4)}
+    .btn-outline:hover{border-color:white;background:rgba(255,255,255,.08)}
+    .btn-wa{background:#25D366;color:white}
+    .btn-wa:hover{background:#1db954;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.4)}
+    .btn-ghost{background:transparent;color:var(--blue);border:2px solid var(--blue)}
+    .btn-ghost:hover{background:var(--blt)}
+
+    /* fade */
+    .fu{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+    .fu.visible{opacity:1;transform:none}
+    .fu.d1{transition-delay:.1s}.fu.d2{transition-delay:.2s}.fu.d3{transition-delay:.3s}.fu.d4{transition-delay:.4s}
+
+    /* ── NAV ── */
+    #nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:18px 0;transition:all .3s}
+    #nav.scrolled{background:rgba(10,20,46,.96);backdrop-filter:blur(14px);box-shadow:0 4px 24px rgba(0,0,0,.28);padding:11px 0}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between}
+    .nav-logo img{height:42px;width:auto}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.78);font-size:14px;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    #hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s}
+    #hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    #hamburger.open span:nth-child(2){opacity:0}
+    #hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    #mobile-menu{display:none;flex-direction:column;background:rgba(10,20,46,.97);padding:8px 0 24px}
+    #mobile-menu a{color:rgba(255,255,255,.85);font-size:16px;font-weight:500;padding:14px 24px;display:block;border-bottom:1px solid rgba(255,255,255,.06)}
+    #mobile-menu .btn{margin:16px 24px 0;justify-content:center}
+
+    /* ── HERO ── */
+    #hero{position:relative;background:var(--grad);min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:80px}
+    .hero-dots{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.07}
+    .hero-dots svg{width:100%;height:100%}
+    .hblob{position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px)}
+    .hb1{width:560px;height:560px;background:rgba(35,86,204,.55);top:-180px;right:-120px}
+    .hb2{width:380px;height:380px;background:rgba(196,154,40,.16);bottom:-100px;left:-80px}
+
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+    .hero-content{color:white}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(196,154,40,.18);border:1px solid rgba(196,154,40,.38);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:100px;margin-bottom:24px}
+    h1.hero-title{font-family:var(--hf);font-size:clamp(34px,5vw,66px);line-height:1.08;margin-bottom:10px}
+    h1.hero-title .gold{color:var(--gold)}
+    .hero-tagline{font-family:var(--hf);font-style:italic;font-size:clamp(15px,1.8vw,21px);color:rgba(255,255,255,.58);margin-bottom:22px}
+    .hero-desc{font-size:16px;line-height:1.8;color:rgba(255,255,255,.72);margin-bottom:36px;max-width:460px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+    .hero-trust{display:flex;align-items:center;gap:18px;margin-top:36px;padding-top:26px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+    .tpill{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.6);font-weight:500}
+    .tpill svg{color:var(--gold);flex-shrink:0}
+
+    /* hero panel */
+    .hero-panel{background:rgba(255,255,255,.07);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:36px}
+    .panel-logo{text-align:center;margin-bottom:26px}
+    .panel-logo img{height:76px;width:auto}
+    .panel-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+    .ps{background:rgba(255,255,255,.08);border-radius:14px;padding:18px 12px;text-align:center}
+    .ps-n{font-family:var(--hf);font-size:28px;font-weight:700;color:var(--gold);line-height:1}
+    .ps-l{font-size:11px;color:rgba(255,255,255,.52);margin-top:5px;font-weight:500;line-height:1.4}
+    .panel-cta{display:block;text-align:center;background:var(--gold);color:var(--navy);font-weight:700;font-size:14px;padding:15px;border-radius:100px;transition:all .25s}
+    .panel-cta:hover{background:#b38b22;transform:translateY(-2px)}
+    .panel-note{text-align:center;font-size:11px;color:rgba(255,255,255,.35);margin-top:10px}
+
+    /* ── EMPATHY STRIP ── */
+    #empathy{padding:64px 0;background:var(--white)}
+    .empathy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+    .empathy-card{padding:36px 28px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--cream);transition:all .3s}
+    .empathy-card:hover{border-color:var(--blue);box-shadow:var(--sh);transform:translateY(-3px)}
+    .empathy-icon{width:48px;height:48px;background:var(--blt);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+    .empathy-icon svg{color:var(--blue)}
+    .empathy-q{font-family:var(--hf);font-style:italic;font-size:19px;color:var(--navy);line-height:1.4;margin-bottom:12px}
+    .empathy-a{font-size:14px;color:var(--muted);line-height:1.7}
+
+    /* ── WHO WE ARE ── */
+    #who{padding:88px 0;background:var(--cream)}
+    .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .who-visual{position:relative}
+    .who-img-block{border-radius:28px;overflow:hidden;background:var(--grad);padding:52px 40px;text-align:center;position:relative}
+    .who-img-block::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+    .who-img-block img{height:88px;width:auto;margin-bottom:20px;position:relative;z-index:1}
+    .who-img-title{font-family:var(--hf);font-size:24px;color:white;margin-bottom:8px;position:relative;z-index:1}
+    .who-img-title em{color:var(--gold);font-style:normal}
+    .who-img-sub{font-size:14px;color:rgba(255,255,255,.58);line-height:1.65;position:relative;z-index:1}
+    .who-badge{position:absolute;bottom:-18px;right:24px;background:var(--gold);color:var(--navy);border-radius:16px;padding:14px 20px;font-weight:700;font-size:13px;line-height:1.4;box-shadow:0 8px 28px rgba(196,154,40,.4)}
+    .who-badge span{display:block;font-family:var(--hf);font-size:28px;line-height:1}
+
+    .who-content{}
+    .who-story{font-size:16px;color:var(--muted);line-height:1.85;margin-bottom:32px}
+    .who-story strong{color:var(--text);font-weight:600}
+    .who-pillars{display:flex;flex-direction:column;gap:18px}
+    .wpillar{display:flex;gap:14px;align-items:flex-start}
+    .wpillar-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+    .wpillar-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:3px}
+    .wpillar-text{font-size:14px;color:var(--muted);line-height:1.65}
+
+    /* ── STATS ── */
+    #stats{padding:60px 0;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .stat-card{text-align:center;padding:32px 18px;border-radius:var(--r);background:var(--cream);border:1px solid var(--border);transition:all .3s}
+    .stat-card:hover{box-shadow:var(--sh);transform:translateY(-4px)}
+    .stat-icon{width:48px;height:48px;background:var(--grad2);border-radius:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+    .stat-icon svg{color:white}
+    .stat-num{font-family:var(--hf);font-size:42px;font-weight:800;color:var(--navy);line-height:1;margin-bottom:5px}
+    .stat-label{font-size:13px;color:var(--muted);font-weight:500;line-height:1.4}
+
+    /* ── WHY DIFFERENT ── */
+    #why{padding:88px 0;background:var(--cream)}
+    .why-intro{text-align:center;margin-bottom:52px}
+    .why-intro .section-sub{margin:0 auto}
+    .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .why-card{background:var(--white);border-radius:var(--r);padding:34px 30px;border:2px solid var(--border);transition:all .3s;display:flex;gap:18px;align-items:flex-start}
+    .why-card:hover{border-color:rgba(27,75,181,.35);box-shadow:0 12px 40px rgba(27,75,181,.1);transform:translateY(-3px)}
+    .why-circle{width:44px;height:44px;flex-shrink:0;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .why-circle svg{color:var(--gold)}
+    .why-title{font-family:var(--hf);font-size:19px;color:var(--navy);margin-bottom:7px;line-height:1.3}
+    .why-text{font-size:14px;color:var(--muted);line-height:1.72}
+    .why-smarter{text-align:center;margin-top:44px;font-family:var(--hf);font-style:italic;font-size:clamp(18px,2.5vw,30px);color:var(--gold)}
+
+    /* ── RADAR ── */
+    #skills{padding:88px 0;background:var(--white)}
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .skills-legend{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+    .legend-item{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:500;color:var(--text)}
+    .legend-dot{width:9px;height:9px;border-radius:50%;background:var(--blue2);flex-shrink:0}
+    #radarCanvas{width:100%;max-width:400px}
+
+    /* ── JOURNEY ── */
+    #journey{padding:88px 0;background:var(--cream)}
+    .journey-wrap{position:relative;user-select:none}
+    .journey-track{overflow:hidden}
+    .journey-slider{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);cursor:grab}
+    .journey-slider:active{cursor:grabbing}
+    .journey-slide{min-width:300px;flex:0 0 300px;padding:0 10px}
+    .jcard{background:var(--white);border-radius:var(--r);padding:34px 28px;border:2px solid transparent;transition:all .3s;position:relative;overflow:hidden}
+    .jcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad2);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .jcard.active{border-color:var(--blue2);box-shadow:0 12px 36px rgba(27,75,181,.14);transform:translateY(-4px)}
+    .jcard.active::before{transform:scaleX(1)}
+    .jnum{font-family:var(--hf);font-size:54px;font-weight:800;color:rgba(27,75,181,.07);line-height:1;margin-bottom:12px}
+    .jicon{width:48px;height:48px;background:var(--grad2);border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .jicon svg{color:white}
+    .jlabel{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:6px}
+    .jtitle{font-family:var(--hf);font-size:19px;color:var(--navy);margin-bottom:9px;line-height:1.3}
+    .jdesc{font-size:13px;color:var(--muted);line-height:1.72}
+    .jarrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;background:white;border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:all .2s;box-shadow:var(--sh)}
+    .jarrow:hover{background:var(--navy);border-color:var(--navy)}
+    .jarrow:hover svg{color:white}
+    .jarrow svg{color:var(--navy);transition:color .2s}
+    #jPrev{left:-21px}#jNext{right:-21px}
+    .jdots{display:flex;justify-content:center;gap:7px;margin-top:26px}
+    .jdot{width:7px;height:7px;border-radius:100px;background:var(--border);cursor:pointer;transition:all .3s}
+    .jdot.active{background:var(--blue);width:22px}
+
+    /* ── PROGRAMMES ── */
+    #programmes{padding:88px 0;background:var(--navy)}
+    #programmes .section-title{color:white}
+    #programmes .section-sub{color:rgba(255,255,255,.58)}
+    .prog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:48px}
+    .prog-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:36px;cursor:pointer;transition:all .35s;position:relative;overflow:hidden}
+    .prog-card:hover{border-color:rgba(35,86,204,.55);transform:translateY(-4px);box-shadow:0 20px 56px rgba(0,0,0,.28)}
+    .prog-card.expanded{border-color:var(--blue2);background:rgba(27,75,181,.12)}
+    .prog-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+    .prog-badge{background:var(--gold);color:var(--navy);font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:100px}
+    .prog-toggle{width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+    .prog-card.expanded .prog-toggle{background:var(--blue2);border-color:var(--blue2);transform:rotate(45deg)}
+    .prog-toggle svg{color:white}
+    .prog-title{font-family:var(--hf);font-size:22px;color:white;margin-bottom:6px}
+    .prog-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:18px}
+    .prog-desc{font-size:14px;color:rgba(255,255,255,.62);line-height:1.7;margin-bottom:20px}
+    .prog-pricing{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
+    .prog-price-n{font-family:var(--hf);font-size:34px;font-weight:700;color:var(--gold)}
+    .prog-price-p{font-size:13px;color:rgba(255,255,255,.42)}
+    .prog-price-note{font-size:12px;color:rgba(255,255,255,.38);margin-bottom:18px}
+    .prog-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
+    .prog-card.expanded .prog-body{max-height:400px;opacity:1}
+    .prog-div{height:1px;background:rgba(255,255,255,.1);margin:18px 0}
+    .prog-areas-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.38);font-weight:700;margin-bottom:11px}
+    .prog-tags{display:flex;flex-wrap:wrap;gap:7px}
+    .prog-tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 13px;font-size:12px;color:rgba(255,255,255,.68);font-weight:500}
+    .prog-cta{margin-top:18px;display:block;text-align:center;background:var(--gold);color:var(--navy);font-weight:700;font-size:13px;padding:13px;border-radius:100px;transition:all .25s}
+    .prog-cta:hover{background:#b38b22}
+    .prog-note{text-align:center;margin-top:32px;font-size:14px;color:rgba(255,255,255,.45);font-style:italic}
+    .prog-note a{color:var(--gold);font-style:normal;font-weight:600}
+
+    /* ── TESTIMONIALS ── */
+    #testimonials{padding:88px 0;background:var(--white)}
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+    .testi-card{background:var(--cream);border-radius:var(--r);padding:32px 28px;border:1.5px solid var(--border);transition:all .3s;position:relative}
+    .testi-card:hover{box-shadow:var(--sh);transform:translateY(-3px);border-color:rgba(196,154,40,.35)}
+    .testi-stars{display:flex;gap:3px;margin-bottom:14px}
+    .testi-stars svg{color:var(--gold)}
+    .testi-text{font-size:14px;color:var(--text);line-height:1.78;margin-bottom:20px;font-style:italic}
+    .testi-text::before{content:'\201C';font-family:var(--hf);font-size:40px;color:var(--gold);line-height:0;position:relative;top:14px;margin-right:4px}
+    .testi-author{display:flex;flex-direction:column;gap:2px}
+    .testi-name{font-size:14px;font-weight:700;color:var(--navy)}
+    .testi-role{font-size:12px;color:var(--muted)}
+
+    /* ── TRIAL CTA ── */
+    #trial{padding:88px 0;background:var(--grad);position:relative;overflow:hidden}
+    #trial::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(196,154,40,.13) 0%,transparent 70%);top:-200px;right:-100px;pointer-events:none}
+    .trial-inner{text-align:center;color:white;max-width:680px;margin:0 auto;position:relative;z-index:1}
+    .trial-inner .section-title{color:white}
+    .trial-inner .section-title em{color:var(--gold);font-style:normal}
+    .trial-inner p{font-size:17px;color:rgba(255,255,255,.7);margin-bottom:40px;line-height:1.8}
+    .trial-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .trial-note{margin-top:20px;font-size:12px;color:rgba(255,255,255,.36)}
+
+    /* ── CONTACT ── */
+    #contact{padding:88px 0;background:var(--cream)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .contact-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:28px}
+    .cicon{width:46px;height:46px;background:var(--grad2);border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .cicon svg{color:white}
+    .clabel{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:3px}
+    .cvalue{font-size:17px;font-weight:700;color:var(--navy)}
+    .csub{font-size:12px;color:var(--muted);margin-top:2px}
+    .contact-form{background:white;border-radius:var(--r);padding:44px;box-shadow:var(--sh)}
+    .form-title{font-family:var(--hf);font-size:22px;color:var(--navy);margin-bottom:5px}
+    .form-sub{font-size:13px;color:var(--muted);margin-bottom:26px}
+    .fg{margin-bottom:16px}
+    .fg label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+    .fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:11px;font-family:var(--bf);font-size:14px;color:var(--text);background:var(--cream);outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blue2);box-shadow:0 0 0 3px rgba(27,75,181,.1)}
+    .fg textarea{resize:vertical;min-height:86px}
+    .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .fsub{width:100%;padding:15px;background:var(--grad2);color:white;font-family:var(--bf);font-size:15px;font-weight:700;border:none;border-radius:100px;cursor:pointer;transition:all .25s;margin-top:4px}
+    .fsub:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,75,181,.32)}
+    .fnote{text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
+
+    /* ── FOOTER ── */
+    footer{background:var(--navy);color:rgba(255,255,255,.48);padding:44px 0 28px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+    .footer-brand{display:flex;align-items:center;gap:10px}
+    .footer-brand img{height:33px;opacity:.78}
+    .fb-name{font-weight:700;color:rgba(255,255,255,.78);font-size:14px}
+    .footer-links{display:flex;gap:22px;flex-wrap:wrap}
+    .footer-links a{font-size:13px;color:rgba(255,255,255,.38);transition:color .2s}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-copy{width:100%;text-align:center;font-size:12px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08)}
+
+    /* ── WA FAB ── */
+    #wafab{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+    .wa-bubble{background:white;color:var(--navy);border-radius:12px;padding:10px 14px;font-size:12px;font-weight:600;box-shadow:0 8px 28px rgba(0,0,0,.16);max-width:185px;line-height:1.4;position:relative;opacity:0;transform:translateY(6px) scale(.95);transition:all .28s .35s}
+    .wa-bubble::after{content:'';position:absolute;bottom:-6px;right:17px;width:12px;height:12px;background:white;clip-path:polygon(0 0,100% 0,50% 100%)}
+    #wafab:hover .wa-bubble{opacity:1;transform:none}
+    .wa-fab{width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.44);transition:all .25s;text-decoration:none;position:relative}
+    .wa-fab:hover{transform:scale(1.1)}
+    .wa-fab svg{color:white;width:26px;height:26px}
+    .wa-pulse{position:absolute;top:0;right:0;width:15px;height:15px;background:#FF4444;border-radius:50%;border:2px solid white}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .hero-grid,.who-grid,.skills-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+      .empathy-grid{grid-template-columns:1fr}
+      .prog-grid{grid-template-columns:1fr}
+      .stats-row,.testi-grid{grid-template-columns:repeat(2,1fr)}
+      .why-grid{grid-template-columns:1fr}
+      .nav-links,.nav-cta-wrap{display:none}
+      #hamburger{display:flex}
+      #jPrev{left:0}#jNext{right:0}
+    }
+    @media(max-width:600px){
+      .section{padding:64px 0}
+      .stats-row{grid-template-columns:repeat(2,1fr);gap:14px}
+      .testi-grid{grid-template-columns:1fr}
+      .frow{grid-template-columns:1fr}
+      .contact-form{padding:28px 20px}
+      .journey-slide{min-width:calc(100vw - 70px);flex:0 0 calc(100vw - 70px)}
+      .hero-actions{flex-direction:column}
+      .hero-actions .btn{justify-content:center}
+      .trial-actions{flex-direction:column;align-items:center}
+      .skills-legend{grid-template-columns:1fr}
+      .who-badge{right:12px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo"><img src="Clever Corner Logo (1).png" alt="Clever Corner" /></div>
+      <ul class="nav-links">
+        <li><a href="#who">Our Story</a></li>
+        <li><a href="#programmes">Programmes</a></li>
+        <li><a href="#testimonials">Parents Say</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta-wrap"><a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20the%20trial%20lesson." class="btn btn-gold" target="_blank" rel="noopener" style="font-size:13px;padding:11px 22px">Chat With Us</a></div>
+      <div id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+    <div id="mobile-menu">
+      <a href="#who" onclick="toggleMenu()">Our Story</a>
+      <a href="#programmes" onclick="toggleMenu()">Programmes</a>
+      <a href="#testimonials" onclick="toggleMenu()">Parents Say</a>
+      <a href="#contact" onclick="toggleMenu()">Contact</a>
+      <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20the%20trial%20lesson." class="btn btn-wa" target="_blank" rel="noopener">Chat With Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-dots"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="d" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="white"/></pattern></defs><rect width="100%" height="100%" fill="url(#d)"/></svg></div>
+  <div class="hblob hb1"></div>
+  <div class="hblob hb2"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content fu">
+        <div class="hero-eyebrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Singapore Primary English · P1 – P6
+        </div>
+        <h1 class="hero-title">Clever<br /><span class="gold">Corner</span></h1>
+        <div class="hero-tagline">more than just tuition</div>
+        <p class="hero-desc">We believe every child deserves to be truly understood — not just taught at. Our small, personal classes give your child the space to grow, ask questions, and find their voice in English.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20and%20book%20a%20trial%20lesson." class="btn btn-gold" target="_blank" rel="noopener">Let's Chat →</a>
+          <a href="#who" class="btn btn-outline">Our Story</a>
+        </div>
+        <div class="hero-trust">
+          <div class="tpill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Max 6 students per class</div>
+          <div class="tpill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Complimentary trial lesson</div>
+          <div class="tpill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Personalised feedback</div>
+        </div>
+      </div>
+      <div class="hero-panel fu d2">
+        <div class="panel-logo"><img src="Clever Corner Logo (1).png" alt="Clever Corner" /></div>
+        <div class="panel-stats">
+          <div class="ps"><div class="ps-n">≤6</div><div class="ps-l">Students<br />Per Class</div></div>
+          <div class="ps"><div class="ps-n">1.5h</div><div class="ps-l">Per<br />Lesson</div></div>
+          <div class="ps"><div class="ps-n">P1–6</div><div class="ps-l">All Primary<br />Levels</div></div>
+          <div class="ps"><div class="ps-n">FREE</div><div class="ps-l">Trial<br />Lesson</div></div>
+        </div>
+        <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20a%20trial%20lesson%20for%20my%20child." class="panel-cta" target="_blank" rel="noopener">Find Out If We're the Right Fit →</a>
+        <p class="panel-note">No pressure · Just a genuine conversation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPATHY STRIP — "We hear what parents say" -->
+<section id="empathy">
+  <div class="container">
+    <div class="section-head" style="text-align:center">
+      <div class="badge">We Hear You</div>
+      <h2 class="section-title">Sound Familiar?</h2>
+      <p class="section-sub" style="margin:0 auto">These are the worries we hear from parents every week. You're not alone — and there's a way forward.</p>
+    </div>
+    <div class="empathy-grid">
+      <div class="empathy-card fu">
+        <div class="empathy-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="empathy-q">"My child keeps getting the same questions wrong, even after drilling them."</div>
+        <div class="empathy-a">Drilling without understanding doesn't stick. We teach the <em>why</em> behind every answer — so your child can apply the skill to any question, not just the ones they've seen before.</div>
+      </div>
+      <div class="empathy-card fu d1">
+        <div class="empathy-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="empathy-q">"In a big class, she just gets lost. Nobody notices when she's confused."</div>
+        <div class="empathy-a">With a maximum of 6 students, every child is visible. We notice when your child is struggling — often before they even say anything — and we address it in that same lesson.</div>
+      </div>
+      <div class="empathy-card fu d2">
+        <div class="empathy-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="empathy-q">"He knows the content but freezes the moment he sees an exam paper."</div>
+        <div class="empathy-a">Confidence comes from understanding, not memorising. We build it gradually — helping your child approach every question with a clear method, so they walk into any exam feeling ready.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section id="who" class="section--alt section">
+  <div class="container">
+    <div class="who-grid">
+      <div class="who-visual fu">
+        <div class="who-img-block">
+          <img src="Clever Corner Logo (1).png" alt="Clever Corner" />
+          <div class="who-img-title">Built on the belief that<br /><em>every child can</em></div>
+          <p class="who-img-sub">We started Clever Corner because we saw too many bright kids who just needed someone to slow down and truly explain things to them.</p>
+        </div>
+        <div class="who-badge"><span>FREE</span>Trial for<br />new students</div>
+      </div>
+      <div class="fu d1">
+        <div class="badge badge--blue">Our Story</div>
+        <h2 class="section-title">We're More Than Just Tuition</h2>
+        <p class="who-story">
+          At Clever Corner, we believe the best kind of learning happens when a child feels <strong>safe enough to ask questions, confident enough to try, and supported enough to fail without fear.</strong>
+          <br /><br />
+          Our lessons go beyond exam prep. We take the time to understand each student — how they think, where they get stuck, and what lights them up. Then we build from there.
+        </p>
+        <div class="who-pillars">
+          <div class="wpillar">
+            <div class="wpillar-dot"></div>
+            <div><div class="wpillar-title">Led by young, driven teachers</div><div class="wpillar-text">Passionate educators who bring energy and genuine care to every lesson.</div></div>
+          </div>
+          <div class="wpillar">
+            <div class="wpillar-dot"></div>
+            <div><div class="wpillar-title">Process-first, not results-first</div><div class="wpillar-text">When students understand the process, better results follow naturally.</div></div>
+          </div>
+          <div class="wpillar">
+            <div class="wpillar-dot"></div>
+            <div><div class="wpillar-title">Parents are part of the journey</div><div class="wpillar-text">We share regular feedback so you always know where your child stands.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-card fu" data-stat="6" data-prefix="≤" data-suffix="">
+        <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="stat-num"><span class="pre">≤</span><span class="counter">0</span></div>
+        <div class="stat-label">Students Per Class</div>
+      </div>
+      <div class="stat-card fu d1" data-stat="1.5" data-prefix="" data-suffix="h">
+        <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="stat-num"><span class="counter">0</span><span class="suf">h</span></div>
+        <div class="stat-label">Per Lesson</div>
+      </div>
+      <div class="stat-card fu d2" data-stat="6" data-prefix="P1–" data-suffix="">
+        <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="stat-num"><span class="pre">P1–</span><span class="counter">0</span></div>
+        <div class="stat-label">English Programme</div>
+      </div>
+      <div class="stat-card fu d3" data-stat="100" data-prefix="" data-suffix="%">
+        <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="stat-num"><span class="counter">0</span><span class="suf">%</span></div>
+        <div class="stat-label">Personalised Feedback</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DIFFERENT -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-intro section-head fu">
+      <div class="badge">Why Clever Corner</div>
+      <h2 class="section-title">What Your Child Will Actually Experience</h2>
+      <p class="section-sub">Not a list of features — but what it genuinely feels like to learn here.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fu">
+        <div class="why-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div>
+          <div class="why-title">Small Classes, Big Impact</div>
+          <div class="why-text">Your child is never just another student. With a maximum of 6 per class, we personalise every lesson to how each individual thinks and learns.</div>
+        </div>
+      </div>
+      <div class="why-card fu d1">
+        <div class="why-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div>
+          <div class="why-title">No More Guessing</div>
+          <div class="why-text">We train your child to think through problems systematically. Every answer comes from understanding — not guesswork or memorisation.</div>
+        </div>
+      </div>
+      <div class="why-card fu d1">
+        <div class="why-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div>
+          <div class="why-title">Weak Spots Get Fixed</div>
+          <div class="why-text">We identify the gaps early and target them specifically — so your child builds a real foundation, not a patchwork of short-term fixes.</div>
+        </div>
+      </div>
+      <div class="why-card fu d2">
+        <div class="why-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div>
+          <div class="why-title">Growing Confidence</div>
+          <div class="why-text">The goal isn't just better grades — it's a child who walks into an exam feeling calm, capable and ready. That confidence carries far beyond school.</div>
+        </div>
+      </div>
+    </div>
+    <div class="why-smarter fu d2">"Helping Students Think Smarter"</div>
+  </div>
+</section>
+
+<!-- RADAR -->
+<section id="skills" class="section section--alt">
+  <div class="container">
+    <div class="skills-grid">
+      <div class="fu">
+        <div class="badge badge--blue">What We Cover</div>
+        <h2 class="section-title">A Complete English Education</h2>
+        <p class="section-sub">Our approach addresses every dimension of Primary English — from the mechanics of grammar to the art of writing with voice and clarity.</p>
+        <div class="skills-legend">
+          <div class="legend-item"><div class="legend-dot"></div>Grammar</div>
+          <div class="legend-item"><div class="legend-dot"></div>Vocabulary</div>
+          <div class="legend-item"><div class="legend-dot"></div>Comprehension</div>
+          <div class="legend-item"><div class="legend-dot"></div>Composition</div>
+          <div class="legend-item"><div class="legend-dot"></div>Exam Techniques</div>
+          <div class="legend-item"><div class="legend-dot"></div>Confidence Building</div>
+        </div>
+      </div>
+      <div class="fu d2" style="display:flex;justify-content:center">
+        <canvas id="radarCanvas" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey" class="section">
+  <div class="container">
+    <div class="section-head fu">
+      <div class="badge">Your Child's Journey</div>
+      <h2 class="section-title">From Day One to Confident Learner</h2>
+      <p class="section-sub">Here's what the journey looks like for every Clever Corner student. Drag or swipe to explore.</p>
+    </div>
+    <div class="journey-wrap fu">
+      <div class="journey-track" id="jTrack">
+        <div class="journey-slider" id="jSlider">
+
+          <div class="journey-slide"><div class="jcard active">
+            <div class="jnum">01</div>
+            <div class="jicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div class="jlabel">Stage 01</div>
+            <div class="jtitle">Your Child's First Lesson</div>
+            <div class="jdesc">We start with a complimentary trial that's also a gentle diagnostic. No pressure — we're just getting to know your child: how they think, where they're at, and what they need.</div>
+          </div></div>
+
+          <div class="journey-slide"><div class="jcard">
+            <div class="jnum">02</div>
+            <div class="jicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="jlabel">Stage 02</div>
+            <div class="jtitle">Finding the Real Gaps</div>
+            <div class="jdesc">We don't just look at marks — we look at patterns. Where does your child lose confidence? Where do they guess instead of think? That's where we start.</div>
+          </div></div>
+
+          <div class="journey-slide"><div class="jcard">
+            <div class="jnum">03</div>
+            <div class="jicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="jlabel">Stage 03</div>
+            <div class="jtitle">Building the Foundation</div>
+            <div class="jdesc">Targeted lessons address root concepts clearly. Your child learns not just what is right, but why — so the lesson doesn't end when they leave the classroom.</div>
+          </div></div>
+
+          <div class="journey-slide"><div class="jcard">
+            <div class="jnum">04</div>
+            <div class="jicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+            <div class="jlabel">Stage 04</div>
+            <div class="jtitle">Getting Stronger, Lesson by Lesson</div>
+            <div class="jdesc">Practice across all Paper 1 and Paper 2 components, with individual attention in every lesson. Your child gets noticed, corrected, and encouraged — every single class.</div>
+          </div></div>
+
+          <div class="journey-slide"><div class="jcard">
+            <div class="jnum">05</div>
+            <div class="jicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <div class="jlabel">Stage 05</div>
+            <div class="jtitle">Ready for Any Question</div>
+            <div class="jdesc">We prepare students to apply their knowledge under real exam conditions — with clear strategies for every question type, so nothing comes as a surprise.</div>
+          </div></div>
+
+          <div class="journey-slide"><div class="jcard">
+            <div class="jnum">06</div>
+            <div class="jicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="jlabel">Stage 06</div>
+            <div class="jtitle">A Confident Learner for Life</div>
+            <div class="jdesc">The real measure of success isn't just a grade — it's a child who believes in their own ability. That's what we're building, every lesson, for every student.</div>
+          </div></div>
+
+        </div>
+      </div>
+      <button class="jarrow" id="jPrev"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="jarrow" id="jNext"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+      <div class="jdots" id="jDots">
+        <div class="jdot active" onclick="goTo(0)"></div>
+        <div class="jdot" onclick="goTo(1)"></div>
+        <div class="jdot" onclick="goTo(2)"></div>
+        <div class="jdot" onclick="goTo(3)"></div>
+        <div class="jdot" onclick="goTo(4)"></div>
+        <div class="jdot" onclick="goTo(5)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES -->
+<section id="programmes" class="section section--dark">
+  <div class="container">
+    <div class="section-head fu">
+      <div class="badge">Our Programmes</div>
+      <h2 class="section-title">Two Programmes, One Goal</h2>
+      <p class="section-sub">Tap a card to learn more — or WhatsApp us to find out which is right for your child.</p>
+    </div>
+    <div class="prog-grid">
+
+      <!-- Paper 2 -->
+      <div class="prog-card fu" onclick="toggleProg(this)">
+        <div class="prog-header">
+          <span class="prog-badge">Core Programme</span>
+          <div class="prog-toggle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="prog-title">Comprehensive English</div>
+        <div class="prog-sub">Paper 2 · P1–P6 · 1.5 hours · Max 6 students</div>
+        <div class="prog-desc">A structured, systematic programme covering all the core skills your child needs to excel in Paper 2 — from grammar and vocabulary to comprehension and editing.</div>
+        <div class="prog-pricing">
+          <span class="prog-price-n">$220</span>
+          <span class="prog-price-p">/ month (P1–P5)</span>
+        </div>
+        <div class="prog-price-note">P6: $240/month · $55/lesson (P1–P5) · $60/lesson (P6)</div>
+        <div class="prog-body">
+          <div class="prog-div"></div>
+          <div class="prog-areas-title">What's covered</div>
+          <div class="prog-tags">
+            <span class="prog-tag">Grammar</span>
+            <span class="prog-tag">Vocabulary</span>
+            <span class="prog-tag">Comprehension</span>
+            <span class="prog-tag">Editing</span>
+            <span class="prog-tag">Cloze Passages</span>
+            <span class="prog-tag">Visual Text</span>
+            <span class="prog-tag">Open-Ended Comprehension</span>
+            <span class="prog-tag">Synthesis & Transformation</span>
+          </div>
+          <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20the%20Comprehensive%20English%20programme." class="prog-cta" target="_blank" rel="noopener">Ask Us About This Programme →</a>
+        </div>
+      </div>
+
+      <!-- Paper 1 -->
+      <div class="prog-card fu d1" onclick="toggleProg(this)">
+        <div class="prog-header">
+          <span class="prog-badge">Add-On</span>
+          <div class="prog-toggle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="prog-title">Creative Writing Package</div>
+        <div class="prog-sub">Paper 1 · Composition & Writing · As needed</div>
+        <div class="prog-desc">For students who want to strengthen their writing voice and storytelling. This add-on works alongside the Comprehensive English programme to develop compelling, original compositions.</div>
+        <div class="prog-pricing">
+          <span class="prog-price-n">$55</span>
+          <span class="prog-price-p">/ additional lesson (P1–P5)</span>
+        </div>
+        <div class="prog-price-note">P6: $60/lesson · Flexible scheduling based on your child's needs</div>
+        <div class="prog-body">
+          <div class="prog-div"></div>
+          <div class="prog-areas-title">What's covered</div>
+          <div class="prog-tags">
+            <span class="prog-tag">Composition Writing</span>
+            <span class="prog-tag">Picture Composition</span>
+            <span class="prog-tag">Situational Writing</span>
+            <span class="prog-tag">Story Structure</span>
+            <span class="prog-tag">Show-Not-Tell</span>
+            <span class="prog-tag">Vocabulary & Expression</span>
+          </div>
+          <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20the%20Creative%20Writing%20programme." class="prog-cta" target="_blank" rel="noopener">Ask Us About This Programme →</a>
+        </div>
+      </div>
+
+    </div>
+    <p class="prog-note fu d2">Want to know exactly what each lesson looks like? <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20Can%20you%20share%20more%20details%20about%20your%20lesson%20structure?" target="_blank" rel="noopener">Chat with us on WhatsApp</a> — we're happy to walk you through it.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section section--alt">
+  <div class="container">
+    <div class="section-head fu" style="text-align:center">
+      <div class="badge">What Parents Say</div>
+      <h2 class="section-title">Heard Directly From Our Families</h2>
+      <p class="section-sub" style="margin:0 auto">Nothing tells our story better than the parents who've been on this journey with us.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fu">
+        <div class="testi-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="testi-text">My daughter used to dread English. Now she actually looks forward to her Clever Corner lessons. The teacher genuinely takes time to explain things until she truly gets it — not just moving on to cover content.</div>
+        <div class="testi-author"><div class="testi-name">Parent of P4 student</div><div class="testi-role">Enrolled since 2024</div></div>
+      </div>
+      <div class="testi-card fu d1">
+        <div class="testi-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="testi-text">What stood out was the feedback. After every lesson I know exactly what my son worked on and what he needs to improve. That kind of transparency is rare — and it makes such a difference as a parent.</div>
+        <div class="testi-author"><div class="testi-name">Parent of P5 student</div><div class="testi-role">Joined 2025</div></div>
+      </div>
+      <div class="testi-card fu d2">
+        <div class="testi-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="testi-text">The small class size is real — and it really matters. My son was always too shy to ask questions in bigger classes. Here he actually participates, and I can already see the difference in his confidence.</div>
+        <div class="testi-author"><div class="testi-name">Parent of P3 student</div><div class="testi-role">Referred by a friend</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIAL CTA -->
+<section id="trial">
+  <div class="container">
+    <div class="trial-inner">
+      <div class="badge fu">Start the Conversation</div>
+      <h2 class="section-title fu d1">Not Sure If We're the Right Fit?<br /><em>Let's Find Out Together.</em></h2>
+      <p class="fu d2">Come in for a complimentary trial lesson. We'll spend time understanding your child — their current level, what they find hard, and how we can genuinely help. No obligation, no hard sell.</p>
+      <div class="trial-actions fu d3">
+        <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20and%20potentially%20book%20a%20trial%20lesson." class="btn btn-wa" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Chat With Us on WhatsApp
+        </a>
+        <a href="mailto:clevercornerclass@gmail.com" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send Us an Email
+        </a>
+      </div>
+      <p class="trial-note fu d4">A genuine conversation first — no pressure, just clarity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-head fu">
+      <div class="badge badge--blue">Get In Touch</div>
+      <h2 class="section-title">We'd Love to Hear From You</h2>
+      <p class="section-sub">WhatsApp us for the quickest reply, or fill in the form and we'll be in touch soon.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="fu">
+        <div class="contact-item">
+          <div class="cicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></div>
+          <div><div class="clabel">WhatsApp / Mobile</div><a href="https://wa.me/6587659188" class="cvalue" target="_blank" rel="noopener">+65 8765 9188</a><div class="csub">Fastest way to reach us</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="cicon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="clabel">Email</div><a href="mailto:clevercornerclass@gmail.com" class="cvalue">clevercornerclass@gmail.com</a><div class="csub">We reply within 24 hours</div></div>
+        </div>
+        <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20a%20trial%20lesson." class="btn btn-wa" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-top:8px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Chat With Us on WhatsApp
+        </a>
+      </div>
+      <div class="contact-form fu d1">
+        <div class="form-title">Send Us a Message</div>
+        <p class="form-sub">We'll get back to you within 24 hours.</p>
+        <form onsubmit="handleForm(event)">
+          <div class="frow">
+            <div class="fg"><label>Parent's Name</label><input type="text" placeholder="Your name" required /></div>
+            <div class="fg"><label>Child's Level</label>
+              <select>
+                <option value="">Select level</option>
+                <option>Primary 1</option><option>Primary 2</option><option>Primary 3</option>
+                <option>Primary 4</option><option>Primary 5</option><option>Primary 6</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>WhatsApp Number</label><input type="tel" placeholder="+65 xxxx xxxx" required /></div>
+          <div class="fg"><label>What would you like help with?</label><textarea placeholder="Tell us a bit about your child — what they're struggling with, what you're hoping for..."></textarea></div>
+          <button type="submit" class="fsub">Send Message →</button>
+          <p class="fnote">Or WhatsApp us directly: <a href="https://wa.me/6587659188" style="color:var(--blue)">+65 8765 9188</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="Clever Corner Logo (1).png" alt="Clever Corner" />
+        <div><div class="fb-name">Clever Corner</div><div>More than just tuition</div></div>
+      </div>
+      <div class="footer-links">
+        <a href="#who">Our Story</a>
+        <a href="#programmes">Programmes</a>
+        <a href="#testimonials">Parents Say</a>
+        <a href="#contact">Contact</a>
+        <a href="https://wa.me/6587659188" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 Clever Corner · Singapore Primary English Specialists · <a href="mailto:clevercornerclass@gmail.com" style="color:inherit">clevercornerclass@gmail.com</a></div>
+  </div>
+</footer>
+
+<!-- WA FAB -->
+<div id="wafab">
+  <div class="wa-bubble">Have a question? <strong>Let's chat</strong> — no pressure at all 😊</div>
+  <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20your%20classes." class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp Clever Corner">
+    <div class="wa-pulse"></div>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
+</div>
+
+<script>
+// NAV
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+// MOBILE MENU
+function toggleMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu');h.classList.toggle('open');m.style.display=h.classList.contains('open')?'flex':'none'}
+
+// FORM
+function handleForm(e){e.preventDefault();const f=e.target;const t=encodeURIComponent(`Hi Clever Corner! I'd like to find out more.\n\nParent: ${f[0].value}\nChild's Level: ${f[1].value||'Not specified'}\nPhone: ${f[2].value}${f[3].value?'\n\nMessage: '+f[3].value:''}`);window.open(`https://wa.me/6587659188?text=${t}`,'_blank')}
+
+// INTERSECTION OBSERVER
+const io=new IntersectionObserver(entries=>{entries.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');if(el.target.classList.contains('stat-card'))animateStat(el.target);io.unobserve(el.target)}})},{threshold:.15});
+document.querySelectorAll('.fu').forEach(el=>io.observe(el));
+document.querySelectorAll('.stat-card').forEach(el=>io.observe(el));
+
+// COUNTER
+const done=new Set();
+function animateStat(card){if(done.has(card))return;done.add(card);const target=parseFloat(card.dataset.stat),el=card.querySelector('.counter'),isF=target%1!==0,dur=1600,t0=performance.now();function step(now){const p=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-p,3);el.textContent=isF?(ease*target).toFixed(1):Math.floor(ease*target);if(p<1)requestAnimationFrame(step);else el.textContent=isF?target.toFixed(1):target}requestAnimationFrame(step)}
+
+// RADAR
+let radarDone=false;
+new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting&&!radarDone){radarDone=true;drawRadar()}})},{threshold:.3}).observe(document.getElementById('radarCanvas'));
+function drawRadar(){const c=document.getElementById('radarCanvas'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,sz=Math.min(c.offsetWidth,400);c.width=sz*dpr;c.height=sz*dpr;c.style.width=sz+'px';c.style.height=sz+'px';ctx.scale(dpr,dpr);const cx=sz/2,cy=sz/2,R=sz*.32,n=6,labels=['Grammar','Vocabulary','Comprehension','Composition','Exam\nTechniques','Confidence\nBuilding'],vals=[.90,.85,.88,.82,.87,.92],dur=1500,t0=performance.now();function draw(now){const p=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-p,3);ctx.clearRect(0,0,sz,sz);for(let i=1;i<=5;i++){const ri=R*i/5;ctx.beginPath();for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2;j===0?ctx.moveTo(cx+ri*Math.cos(a),cy+ri*Math.sin(a)):ctx.lineTo(cx+ri*Math.cos(a),cy+ri*Math.sin(a))}ctx.closePath();ctx.strokeStyle='rgba(27,75,181,.13)';ctx.lineWidth=1;ctx.stroke()}for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));ctx.strokeStyle='rgba(27,75,181,.18)';ctx.lineWidth=1;ctx.stroke()}ctx.beginPath();for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2,rv=R*vals[j]*ease;j===0?ctx.moveTo(cx+rv*Math.cos(a),cy+rv*Math.sin(a)):ctx.lineTo(cx+rv*Math.cos(a),cy+rv*Math.sin(a))}ctx.closePath();const g=ctx.createRadialGradient(cx,cy,0,cx,cy,R);g.addColorStop(0,'rgba(27,75,181,.45)');g.addColorStop(1,'rgba(27,75,181,.08)');ctx.fillStyle=g;ctx.fill();ctx.strokeStyle='#2356CC';ctx.lineWidth=2.5;ctx.stroke();for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2,rv=R*vals[j]*ease,x=cx+rv*Math.cos(a),y=cy+rv*Math.sin(a);ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fillStyle='#2356CC';ctx.fill();ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke()}ctx.fillStyle='#1A2332';ctx.font=`600 ${Math.max(10,sz*.03)}px 'Plus Jakarta Sans',sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2,lr=R+sz*.13,lx=cx+lr*Math.cos(a),ly=cy+lr*Math.sin(a),lines=labels[j].split('\n');lines.forEach((l,li)=>ctx.fillText(l,lx,ly+(li-(lines.length-1)/2)*15))}if(p<1)requestAnimationFrame(draw)}requestAnimationFrame(draw)}
+
+// JOURNEY SLIDER
+let jIdx=0;
+const jSlider=document.getElementById('jSlider'),jSlides=document.querySelectorAll('.journey-slide'),jCards=document.querySelectorAll('.jcard'),jDots=document.querySelectorAll('.jdot');
+function goTo(idx){jIdx=Math.max(0,Math.min(jSlides.length-1,idx));jSlider.style.transform=`translateX(-${jIdx*jSlides[0].offsetWidth}px)`;jCards.forEach((c,i)=>c.classList.toggle('active',i===jIdx));jDots.forEach((d,i)=>d.classList.toggle('active',i===jIdx))}
+document.getElementById('jNext').onclick=()=>goTo(jIdx+1);
+document.getElementById('jPrev').onclick=()=>goTo(jIdx-1);
+let dx=null;
+jSlider.addEventListener('mousedown',e=>{dx=e.clientX});
+jSlider.addEventListener('touchstart',e=>{dx=e.touches[0].clientX},{passive:true});
+jSlider.addEventListener('mouseup',e=>{if(dx!==null&&Math.abs(e.clientX-dx)>50)goTo(jIdx+(e.clientX<dx?1:-1));dx=null});
+jSlider.addEventListener('touchend',e=>{if(dx!==null&&Math.abs(e.changedTouches[0].clientX-dx)>50)goTo(jIdx+(e.changedTouches[0].clientX<dx?1:-1));dx=null});
+window.addEventListener('resize',()=>goTo(jIdx));
+
+// PROGRAMME CARDS
+function toggleProg(card){const was=card.classList.contains('expanded');document.querySelectorAll('.prog-card').forEach(c=>c.classList.remove('expanded'));if(!was)card.classList.add('expanded')}
+
+window.addEventListener('load',()=>goTo(0));
+</script>
+</body>
+</html>
