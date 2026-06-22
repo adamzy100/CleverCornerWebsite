@@ -97,11 +97,11 @@
     #mobile-menu .mm-sub:hover{color:var(--gold)}
     .nav-has-dd{position:relative}
     .nav-dd-toggle{display:flex;align-items:center;gap:5px;color:rgba(255,255,255,.78);font-size:14px;font-weight:500;cursor:pointer;transition:color .2s;background:none;border:none;padding:0;font-family:var(--bf)}
-    .nav-dd-toggle:hover,.nav-has-dd:hover .nav-dd-toggle{color:var(--gold)}
+    .nav-dd-toggle:hover,.nav-has-dd.open .nav-dd-toggle{color:var(--gold)}
     .nav-dd-toggle .chevron{transition:transform .2s;display:flex}
-    .nav-has-dd:hover .nav-dd-toggle .chevron{transform:rotate(180deg)}
+    .nav-has-dd.open .nav-dd-toggle .chevron{transform:rotate(180deg)}
     .nav-dd-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%);background:rgba(10,20,46,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:8px;min-width:270px;opacity:0;visibility:hidden;transition:all .22s;pointer-events:none;list-style:none;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-    .nav-has-dd:hover .nav-dd-menu{opacity:1;visibility:visible;pointer-events:auto;top:calc(100% + 10px)}
+    .nav-has-dd.open .nav-dd-menu{opacity:1;visibility:visible;pointer-events:auto;top:calc(100% + 10px)}
     .nav-dd-menu li a{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:13px;font-weight:500;padding:10px 14px;border-radius:10px;transition:all .18s}
     .nav-dd-menu li a:hover{color:var(--gold);background:rgba(255,255,255,.06)}
     .nav-dd-menu li a .dd-icon{width:28px;height:28px;background:var(--blt);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -466,6 +466,8 @@
     h.classList.toggle('open');
     m.style.display=m.style.display==='flex'?'none':'flex';
   }
+  document.querySelectorAll('.nav-dd-toggle').forEach(btn=>{btn.addEventListener('click',function(e){e.stopPropagation();const dd=this.closest('.nav-has-dd');const isOpen=dd.classList.contains('open');document.querySelectorAll('.nav-has-dd').forEach(d=>d.classList.remove('open'));if(!isOpen)dd.classList.add('open');})});
+  document.addEventListener('click',()=>document.querySelectorAll('.nav-has-dd').forEach(d=>d.classList.remove('open')));
   window.addEventListener('scroll',()=>{
     document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
   });
