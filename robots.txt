@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://clevercornerclass.com/sitemap.xml
