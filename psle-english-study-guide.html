@@ -92,6 +92,21 @@
     #hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s}
     #mobile-menu{display:none;flex-direction:column;background:rgba(10,20,46,.97);padding:8px 0 24px}
     #mobile-menu a{color:rgba(255,255,255,.85);font-size:16px;font-weight:500;padding:14px 24px;display:block;border-bottom:1px solid rgba(255,255,255,.06)}
+    #mobile-menu .mm-section{color:rgba(255,255,255,.35);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:18px 24px 4px;display:block;border-bottom:none}
+    #mobile-menu .mm-sub{font-size:14px;padding:11px 24px 11px 36px;color:rgba(255,255,255,.65)}
+    #mobile-menu .mm-sub:hover{color:var(--gold)}
+    .nav-has-dd{position:relative}
+    .nav-dd-toggle{display:flex;align-items:center;gap:5px;color:rgba(255,255,255,.78);font-size:14px;font-weight:500;cursor:pointer;transition:color .2s;background:none;border:none;padding:0;font-family:var(--bf)}
+    .nav-dd-toggle:hover,.nav-has-dd:hover .nav-dd-toggle{color:var(--gold)}
+    .nav-dd-toggle .chevron{transition:transform .2s;display:flex}
+    .nav-has-dd:hover .nav-dd-toggle .chevron{transform:rotate(180deg)}
+    .nav-dd-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%);background:rgba(10,20,46,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:8px;min-width:270px;opacity:0;visibility:hidden;transition:all .22s;pointer-events:none;list-style:none;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .nav-has-dd:hover .nav-dd-menu{opacity:1;visibility:visible;pointer-events:auto;top:calc(100% + 10px)}
+    .nav-dd-menu li a{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:13px;font-weight:500;padding:10px 14px;border-radius:10px;transition:all .18s}
+    .nav-dd-menu li a:hover{color:var(--gold);background:rgba(255,255,255,.06)}
+    .nav-dd-menu li a .dd-icon{width:28px;height:28px;background:var(--blt);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .nav-dd-menu li a .dd-icon svg{color:var(--blue);width:13px;height:13px}
+    .nav-dd-divider{height:1px;background:rgba(255,255,255,.08);margin:4px 8px}
 
     /* PAGE HERO */
     .page-hero{background:var(--grad);padding:120px 0 72px;color:white}
@@ -187,18 +202,35 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-logo"><img src="Clever Corner Logo (1).png" alt="Clever Corner" /></a>
       <ul class="nav-links">
-        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#who">Our Story</a></li>
         <li><a href="index.html#programmes">Programmes</a></li>
+        <li class="nav-has-dd">
+          <button class="nav-dd-toggle">Resources <span class="chevron"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span></button>
+          <ul class="nav-dd-menu">
+            <li><a href="psle-english-study-guide.html"><span class="dd-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span>PSLE English Study Guide</a></li>
+            <li><a href="common-grammar-mistakes-psle.html"><span class="dd-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/></svg></span>Common Grammar Mistakes</a></li>
+            <li><a href="grammar-cloze-strategies.html"><span class="dd-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg></span>Grammar Cloze Strategies</a></li>
+            <li class="nav-dd-divider"></li>
+            <li><a href="synthesis-transformation-guide.html"><span class="dd-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg></span>Synthesis &amp; Transformation</a></li>
+            <li><a href="improve-english-comprehension.html"><span class="dd-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.641 0-8.573-3.007-9.964-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span>Improve Comprehension</a></li>
+          </ul>
+        </li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
-      <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner%2C%20I%20would%20like%20to%20find%20out%20more%20about%20your%20programmes." class="btn btn-gold nav-cta" style="font-size:13px;padding:10px 20px">Book Trial</a>
+      <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20the%20trial%20lesson." class="btn btn-gold nav-cta" style="font-size:13px;padding:10px 20px">Book Trial</a>
       <div id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     </div>
     <div id="mobile-menu">
-      <a href="index.html#about">About</a>
+      <a href="index.html#who">Our Story</a>
       <a href="index.html#programmes">Programmes</a>
       <a href="index.html#contact">Contact</a>
-      <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner%2C%20I%20would%20like%20to%20find%20out%20more%20about%20your%20programmes." class="btn btn-gold" style="margin:16px 24px 0;justify-content:center">Book a Free Trial</a>
+      <span class="mm-section">Free Study Guides</span>
+      <a href="psle-english-study-guide.html" class="mm-sub" onclick="toggleMenu()">PSLE English Study Guide</a>
+      <a href="common-grammar-mistakes-psle.html" class="mm-sub" onclick="toggleMenu()">Common Grammar Mistakes</a>
+      <a href="grammar-cloze-strategies.html" class="mm-sub" onclick="toggleMenu()">Grammar Cloze Strategies</a>
+      <a href="synthesis-transformation-guide.html" class="mm-sub" onclick="toggleMenu()">Synthesis &amp; Transformation</a>
+      <a href="improve-english-comprehension.html" class="mm-sub" onclick="toggleMenu()">Improve Comprehension</a>
+      <a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20the%20trial%20lesson." class="btn btn-gold" style="margin:16px 24px 0;justify-content:center">Book a Free Trial</a>
     </div>
   </div>
 </nav>
