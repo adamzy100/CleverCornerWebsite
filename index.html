@@ -309,10 +309,12 @@
     .prog-title{font-family:var(--hf);font-size:22px;color:white;margin-bottom:6px}
     .prog-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:18px}
     .prog-desc{font-size:14px;color:rgba(255,255,255,.62);line-height:1.7;margin-bottom:20px}
-    .prog-pricing{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
-    .prog-price-n{font-family:var(--hf);font-size:34px;font-weight:700;color:var(--gold)}
-    .prog-price-p{font-size:13px;color:rgba(255,255,255,.42)}
-    .prog-price-note{font-size:12px;color:rgba(255,255,255,.38);margin-bottom:18px}
+    .prog-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+    .prog-price-tier{background:rgba(255,255,255,.06);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.1)}
+    .prog-price-tier-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px}
+    .prog-price-tier-amount{font-family:var(--hf);font-size:30px;font-weight:700;color:var(--gold);line-height:1}
+    .prog-price-tier-period{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px}
+    .prog-price-tier-lesson{font-size:11px;color:rgba(255,255,255,.3);margin-top:3px}
     .prog-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
     .prog-card.expanded .prog-body{max-height:400px;opacity:1}
     .prog-div{height:1px;background:rgba(255,255,255,.1);margin:18px 0}
@@ -755,11 +757,20 @@
         <div class="prog-title">Comprehensive English</div>
         <div class="prog-sub">Paper 2 · P1–P6 · 1.5 hours · Max 6 students</div>
         <div class="prog-desc">A structured, systematic programme covering all the core skills your child needs to excel in Paper 2 — from grammar and vocabulary to comprehension and editing.</div>
-        <div class="prog-pricing">
-          <span class="prog-price-n">$220</span>
-          <span class="prog-price-p">/ month (P1–P5)</span>
+        <div class="prog-price-grid">
+          <div class="prog-price-tier">
+            <div class="prog-price-tier-label">P1 – P5</div>
+            <div class="prog-price-tier-amount">$220</div>
+            <div class="prog-price-tier-period">per month</div>
+            <div class="prog-price-tier-lesson">$55 per lesson</div>
+          </div>
+          <div class="prog-price-tier">
+            <div class="prog-price-tier-label">P6</div>
+            <div class="prog-price-tier-amount">$240</div>
+            <div class="prog-price-tier-period">per month</div>
+            <div class="prog-price-tier-lesson">$60 per lesson</div>
+          </div>
         </div>
-        <div class="prog-price-note">P6: $240/month · $55/lesson (P1–P5) · $60/lesson (P6)</div>
         <div class="prog-body">
           <div class="prog-div"></div>
           <div class="prog-areas-title">What's covered</div>
@@ -786,11 +797,19 @@
         <div class="prog-title">Creative Writing Package</div>
         <div class="prog-sub">Paper 1 · Composition & Writing · As needed</div>
         <div class="prog-desc">For students who want to strengthen their writing voice and storytelling. This add-on works alongside the Comprehensive English programme to develop compelling, original compositions.</div>
-        <div class="prog-pricing">
-          <span class="prog-price-n">$55</span>
-          <span class="prog-price-p">/ additional lesson (P1–P5)</span>
+        <div class="prog-price-grid">
+          <div class="prog-price-tier">
+            <div class="prog-price-tier-label">P1 – P5</div>
+            <div class="prog-price-tier-amount">$55</div>
+            <div class="prog-price-tier-period">per lesson</div>
+          </div>
+          <div class="prog-price-tier">
+            <div class="prog-price-tier-label">P6</div>
+            <div class="prog-price-tier-amount">$60</div>
+            <div class="prog-price-tier-period">per lesson</div>
+          </div>
         </div>
-        <div class="prog-price-note">P6: $60/lesson · Flexible scheduling based on your child's needs</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.38);margin-bottom:18px">Flexible scheduling based on your child's needs</div>
         <div class="prog-body">
           <div class="prog-div"></div>
           <div class="prog-areas-title">What's covered</div>
