@@ -72,7 +72,8 @@
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
   <style>
     :root{--blue:#1B4BB5;--blue2:#2356CC;--blt:#EBF0FB;--navy:#0D1A2E;--gold:#C49A28;--glt:#FDF6E3;--cream:#FAF8F4;--white:#FFFFFF;--text:#1A2332;--muted:#5C6E7E;--border:#E2E8F0;--grad:linear-gradient(135deg,#0D1A2E 0%,#1B4BB5 100%);--sh:0 8px 40px rgba(13,26,46,.11);--r:20px;--hf:'Playfair Display',Georgia,serif;--bf:'Plus Jakarta Sans',system-ui,sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -179,7 +180,7 @@
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><img src="clever-corner-logo.webp" alt="Clever Corner" /></a>
+      <a href="index.html" class="nav-logo"><img src="clever-corner-logo.webp" alt="Clever Corner" fetchpriority="high" /></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#who">Our Story</a></li>
