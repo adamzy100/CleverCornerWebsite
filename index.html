@@ -133,8 +133,8 @@
     .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
     .nav-links a{color:rgba(255,255,255,.78);font-size:14px;font-weight:500;transition:color .2s}
     .nav-links a:hover{color:var(--gold)}
-    #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-    #hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s}
+    #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;border-radius:8px}
+    #hamburger span{display:block;width:24px;height:2px;background:var(--gold);border-radius:2px;transition:all .3s}
     #hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     #hamburger.open span:nth-child(2){opacity:0}
     #hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -450,7 +450,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-cta-wrap"><a href="https://wa.me/6587659188?text=Hi%20Clever%20Corner!%20I'd%20like%20to%20find%20out%20more%20about%20the%20trial%20lesson." class="btn btn-gold" target="_blank" rel="noopener" style="font-size:13px;padding:11px 22px">Chat With Us</a></div>
-      <button id="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></div>
+      <button id="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
     </div>
     <div id="mobile-menu">
       <a href="#who" onclick="toggleMenu()">Our Story</a>
@@ -1068,7 +1068,7 @@ function animateStat(card){if(done.has(card))return;done.add(card);const target=
 
 // RADAR
 let radarDone=false;
-new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting&&!radarDone){radarDone=true;drawRadar()}})},{threshold:.3}).observe(document.getElementById('radarCanvas'));
+new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting&&!radarDone){radarDone=true;requestAnimationFrame(drawRadar)}})},{threshold:.3}).observe(document.getElementById('radarCanvas'));
 function drawRadar(){const c=document.getElementById('radarCanvas'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,sz=Math.min(c.offsetWidth,400);c.width=sz*dpr;c.height=sz*dpr;c.style.width=sz+'px';c.style.height=sz+'px';ctx.scale(dpr,dpr);const cx=sz/2,cy=sz/2,R=sz*.32,n=6,labels=['Grammar','Vocabulary','Comprehension','Composition','Exam\nTechniques','Confidence\nBuilding'],vals=[.90,.85,.88,.82,.87,.92],dur=1500,t0=performance.now();function draw(now){const p=Math.min((now-t0)/dur,1),ease=1-Math.pow(1-p,3);ctx.clearRect(0,0,sz,sz);for(let i=1;i<=5;i++){const ri=R*i/5;ctx.beginPath();for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2;j===0?ctx.moveTo(cx+ri*Math.cos(a),cy+ri*Math.sin(a)):ctx.lineTo(cx+ri*Math.cos(a),cy+ri*Math.sin(a))}ctx.closePath();ctx.strokeStyle='rgba(27,75,181,.13)';ctx.lineWidth=1;ctx.stroke()}for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));ctx.strokeStyle='rgba(27,75,181,.18)';ctx.lineWidth=1;ctx.stroke()}ctx.beginPath();for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2,rv=R*vals[j]*ease;j===0?ctx.moveTo(cx+rv*Math.cos(a),cy+rv*Math.sin(a)):ctx.lineTo(cx+rv*Math.cos(a),cy+rv*Math.sin(a))}ctx.closePath();const g=ctx.createRadialGradient(cx,cy,0,cx,cy,R);g.addColorStop(0,'rgba(27,75,181,.45)');g.addColorStop(1,'rgba(27,75,181,.08)');ctx.fillStyle=g;ctx.fill();ctx.strokeStyle='#2356CC';ctx.lineWidth=2.5;ctx.stroke();for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2,rv=R*vals[j]*ease,x=cx+rv*Math.cos(a),y=cy+rv*Math.sin(a);ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fillStyle='#2356CC';ctx.fill();ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke()}ctx.fillStyle='#1A2332';ctx.font=`600 ${Math.max(10,sz*.03)}px 'Plus Jakarta Sans',sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';for(let j=0;j<n;j++){const a=j*2*Math.PI/n-Math.PI/2,lr=R+sz*.13,lx=cx+lr*Math.cos(a),ly=cy+lr*Math.sin(a),lines=labels[j].split('\n');lines.forEach((l,li)=>ctx.fillText(l,lx,ly+(li-(lines.length-1)/2)*15))}if(p<1)requestAnimationFrame(draw)}requestAnimationFrame(draw)}
 
 // JOURNEY SLIDER
