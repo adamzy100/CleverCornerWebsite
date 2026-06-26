@@ -69,8 +69,8 @@
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=optional" rel="stylesheet" /></noscript>
   <style>
     :root {
       --blue:   #1B4BB5;
@@ -190,7 +190,7 @@
     .hero-tagline{font-family:var(--hf);font-style:italic;font-size:clamp(15px,1.8vw,21px);color:rgba(255,255,255,.58);margin-bottom:22px}
     .hero-desc{font-size:16px;line-height:1.8;color:rgba(255,255,255,.72);margin-bottom:36px;max-width:460px}
     #hero .fu{opacity:1;transform:none;animation:heroFade .7s ease both}
-    @keyframes heroFade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+    @keyframes heroFade{from{opacity:0}to{opacity:1}}
     .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
     .hero-trust{display:flex;align-items:center;gap:18px;margin-top:36px;padding-top:26px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
     .tpill{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.6);font-weight:500}
@@ -1089,9 +1089,4 @@ jSlider.addEventListener('touchend',e=>{if(dx!==null&&Math.abs(e.changedTouches[
 let _rTimer;window.addEventListener('resize',()=>{clearTimeout(_rTimer);_rTimer=setTimeout(()=>{_cacheW();goTo(jIdx)},100)});
 
 // PROGRAMME CARDS
-function toggleProg(card){const was=card.classList.contains('expanded');document.querySelectorAll('.prog-card').forEach(c=>c.classList.remove('expanded'));if(!was)card.classList.add('expanded')}
-
-window.addEventListener('load',()=>{_cacheW();goTo(0)});
-</script>
-</body>
-</html>
+function toggleProg(card){const was=card.classList.contains('expanded');document.querySelectorAll('.prog-card').forEach(c=>c.classList.remove('expanded'));if(!was)card.classList.add('
