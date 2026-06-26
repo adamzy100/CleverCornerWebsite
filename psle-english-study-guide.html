@@ -78,7 +78,7 @@
     .btn-gold:hover{background:#b38b22;transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,40,.4)}
     .btn-wa{background:#25D366;color:white}
     .btn-wa:hover{background:#1db954;transform:translateY(-2px)}
-    .fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .fu{opacity:1;transform:none}
     .fu.visible{opacity:1;transform:none}
 
     /* NAV */
@@ -89,8 +89,11 @@
     .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
     .nav-links a{color:rgba(255,255,255,.78);font-size:14px;font-weight:500;transition:color .2s}
     .nav-links a:hover{color:var(--gold)}
-    #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-    #hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all .3s}
+    #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;border-radius:8px}
+    #hamburger span{display:block;width:24px;height:2px;background:var(--gold);border-radius:2px;transition:all .3s}
+    #hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    #hamburger.open span:nth-child(2){opacity:0}
+    #hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
     #mobile-menu{display:none;flex-direction:column;background:rgba(10,20,46,.97);padding:8px 0 24px}
     #mobile-menu a{color:rgba(255,255,255,.85);font-size:16px;font-weight:500;padding:14px 24px;display:block;border-bottom:1px solid rgba(255,255,255,.06)}
     #mobile-menu .mm-section{color:rgba(255,255,255,.35);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:18px 24px 4px;display:block;border-bottom:none}
@@ -178,6 +181,10 @@
     footer a{color:rgba(255,255,255,.55)}
     footer a:hover{color:var(--gold)}
     .footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+    .footer-social{display:flex;gap:12px;justify-content:center;margin-bottom:14px}
+    .footer-social a{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);color:rgba(255,255,255,.80);transition:all .2s;text-decoration:none}
+    .footer-social a:hover{background:var(--gold);color:var(--navy)}
+    .footer-social svg{width:16px;height:16px;fill:currentColor}
 
     /* WA FAB */
     .wa-fab{position:fixed;bottom:28px;right:28px;z-index:800;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.45);transition:all .25s}
@@ -478,17 +485,11 @@
 </a>
 
 <script>
-  function toggleMenu(){
-    const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu');
-    h.classList.toggle('open');
-    m.style.display=m.style.display==='flex'?'none':'flex';
-  }
+  function toggleMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu');h.classList.toggle('open');m.style.display=m.style.display==='flex'?'none':'flex';}
   document.querySelectorAll('.nav-dd-toggle').forEach(btn=>{btn.addEventListener('click',function(e){e.stopPropagation();const dd=this.closest('.nav-has-dd');const isOpen=dd.classList.contains('open');document.querySelectorAll('.nav-has-dd').forEach(d=>d.classList.remove('open'));if(!isOpen)dd.classList.add('open');})});
   document.addEventListener('click',()=>document.querySelectorAll('.nav-has-dd').forEach(d=>d.classList.remove('open')));
-  window.addEventListener('scroll',()=>{
-    document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
-  });
-  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+  window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);});
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:.1});
   document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
 </script>
 </body>
