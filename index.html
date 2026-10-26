@@ -330,10 +330,12 @@
     .prog-note{text-align:center;margin-top:40px;padding:20px 28px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;font-size:14px;color:rgba(255,255,255,.6);display:inline-block;width:100%}
     .prog-note a{color:var(--gold);font-weight:600;text-decoration:none}
 
-    /* ── TESTIMONIALS ── */
+    /* ── TESTIMONIALS CAROUSEL ── */
     #testimonials{padding:88px 0;background:var(--white)}
-    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
-    .testi-card{background:var(--cream);border-radius:var(--r);padding:32px 28px;border:1.5px solid var(--border);transition:all .3s;position:relative}
+    .testi-carousel-wrap{position:relative;display:flex;align-items:center}
+    .testi-viewport{overflow:hidden;flex:1}
+    .testi-track{display:flex;gap:24px;transition:transform .48s cubic-bezier(.4,0,.2,1);will-change:transform}
+    .testi-card{background:var(--cream);border-radius:var(--r);padding:32px 28px;border:1.5px solid var(--border);transition:box-shadow .3s,transform .3s,border-color .3s;flex:0 0 calc(33.333% - 16px)}
     .testi-card:hover{box-shadow:var(--sh);transform:translateY(-3px);border-color:rgba(196,154,40,.35)}
     .testi-stars{display:flex;gap:3px;margin-bottom:14px}
     .testi-stars svg{color:var(--gold)}
@@ -341,7 +343,13 @@
     .testi-text::before{content:'\201C';font-family:var(--hf);font-size:40px;color:var(--gold);line-height:0;position:relative;top:14px;margin-right:4px}
     .testi-author{display:flex;flex-direction:column;gap:2px}
     .testi-name{font-size:14px;font-weight:700;color:var(--navy)}
-    .testi-role{font-size:12px;color:var(--muted)}
+    .testi-arrow{background:var(--white);border:1.5px solid var(--border);border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--navy);flex-shrink:0;transition:background .25s,color .25s,border-color .25s,opacity .25s;margin:0 14px}
+    .testi-arrow:hover{background:var(--navy);color:white;border-color:var(--navy)}
+    .testi-arrow:disabled{opacity:.25;cursor:default;pointer-events:none}
+    .testi-dots{display:flex;justify-content:center;gap:8px;margin-top:36px}
+    .testi-dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .3s;padding:0}
+    .testi-dot.active{background:var(--gold);width:24px;border-radius:4px}
+    @media(max-width:768px){.testi-card{flex:0 0 100%}.testi-arrow{width:36px;height:36px;margin:0 8px}}
 
     /* ── TRIAL CTA ── */
     #trial{padding:88px 0;background:var(--grad);position:relative;overflow:hidden}
@@ -827,41 +835,92 @@
       <h2 class="section-title">Heard Directly From Our Families</h2>
       <p class="section-sub" style="margin:0 auto">Nothing tells our story better than the parents who've been on this journey with us.</p>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card fu">
-        <div class="testi-stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <div class="testi-carousel-wrap">
+      <button class="testi-arrow" id="testiPrev" aria-label="Previous" onclick="testiSlide(-1)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="testi-viewport">
+        <div class="testi-track" id="testiTrack">
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testi-text">This is the first time I've seen him able to explain the grammar rules to me, not just guess at answers. He also loves the healthy competition during the Zoom lessons. In sum, this is the first time I've seen that he really enjoys an English lesson. Thank you so much for your patience and dedication, especially knowing he had a weak foundation.</div>
+            <div class="testi-author"><div class="testi-name">Parent of P6 student</div></div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testi-text">As a fellow educator, kudos to you for caring so much for every student, even those who come to you at the very last mile. He improved quite a bit during this final stretch, and a large part of that was due to your teaching and guidance.</div>
+            <div class="testi-author"><div class="testi-name">Parent of P6 student (fellow educator)</div></div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testi-text">When we saw her Prelim results, we were quite surprised and very happy! We can really see that she has improved and become more confident in her English. You're very patient and make her feel comfortable during lessons, which we think is very important.</div>
+            <div class="testi-author"><div class="testi-name">Parent of P6 student</div></div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testi-text">The crash course was well targeted at the students' areas of weakness. Teacher Fabien clearly explained the answers using relevant grammar rules and language conventions, rather than simply providing correct answers. A very purposeful and effective crash course. Highly recommended!</div>
+            <div class="testi-author"><div class="testi-name">Parent of P6 student</div></div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testi-text">Your lessons are fantastic and have been a huge help in preparing for the PSLE exams. It's just a shame I discovered you so close to the exam date!</div>
+            <div class="testi-author"><div class="testi-name">Parent of P6 student</div></div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testi-text">Your patience really showed, and even though it was an online class, there was a lot of participation. The way of teaching is very well thought out, and you bond well with every student.</div>
+            <div class="testi-author"><div class="testi-name">Parent of student</div></div>
+          </div>
+
         </div>
-        <div class="testi-text">My daughter used to dread English. Now she actually looks forward to her Clever Corner lessons. The teacher genuinely takes time to explain things until she truly gets it, not just moving on to cover content.</div>
-        <div class="testi-author"><div class="testi-name">Parent of P4 student</div></div>
       </div>
-      <div class="testi-card fu d1">
-        <div class="testi-stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="testi-text">What stood out was the feedback. After every lesson I know exactly what my son worked on and what he needs to improve. That kind of transparency is rare, and it makes such a difference as a parent.</div>
-        <div class="testi-author"><div class="testi-name">Parent of P5 student</div></div>
-      </div>
-      <div class="testi-card fu d2">
-        <div class="testi-stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="testi-text">The small class size is real, and it really matters. My son was always too shy to ask questions in bigger classes. Here he actually participates, and I can already see the difference in his confidence.</div>
-        <div class="testi-author"><div class="testi-name">Parent of P4 student</div></div>
-      </div>
+      <button class="testi-arrow" id="testiNext" aria-label="Next" onclick="testiSlide(1)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
+    <div class="testi-dots" id="testiDots"></div>
   </div>
 </section>
 
@@ -1074,6 +1133,25 @@ let _rTimer;window.addEventListener('resize',()=>{clearTimeout(_rTimer);_rTimer=
 
 // PROGRAMME CARDS
 function toggleProg(card){const was=card.classList.contains('expanded');document.querySelectorAll('.prog-card').forEach(c=>c.classList.remove('expanded'));if(!was)card.classList.add('expanded')}
+
+// TESTIMONIALS CAROUSEL
+(function(){
+  const track=document.getElementById('testiTrack');
+  const dotsEl=document.getElementById('testiDots');
+  const prevBtn=document.getElementById('testiPrev');
+  const nextBtn=document.getElementById('testiNext');
+  if(!track)return;
+  const cards=Array.from(track.children);
+  const total=cards.length;
+  let current=0;
+  function pv(){return window.innerWidth<768?1:3}
+  function mx(){return total-pv()}
+  function buildDots(){dotsEl.innerHTML='';for(let i=0;i<=mx();i++){const d=document.createElement('button');d.className='testi-dot'+(i===0?' active':'');d.setAttribute('aria-label','Go to testimonial '+(i+1));d.addEventListener('click',function(){testiGoTo(i)});dotsEl.appendChild(d)}}
+  function testiGoTo(n){current=Math.max(0,Math.min(n,mx()));const cw=cards[0].getBoundingClientRect().width+24;track.style.transform='translateX(-'+(current*cw)+'px)';Array.from(dotsEl.children).forEach(function(d,i){d.classList.toggle('active',i===current)});prevBtn.disabled=current===0;nextBtn.disabled=current===mx()}
+  window.testiSlide=function(dir){testiGoTo(current+dir)};
+  let _tr;window.addEventListener('resize',function(){clearTimeout(_tr);_tr=setTimeout(function(){buildDots();testiGoTo(Math.min(current,mx()))},100)});
+  buildDots();testiGoTo(0);
+})();
 </script>
 </body>
 </html>
